@@ -8,8 +8,8 @@ optparser.add_option("-m",
 					 type = "choice",
 					 dest = "mode",
 					 help = "distributed map configuration mode",
-					 choices = [ "backup" , "eviction" , "nearcache" ],
-					 metavar = "backup|eviction|nearcache",
+					 choices = [ "backup" , "eviction" , "nearcache" , "default" ],
+					 metavar = "backup|eviction|nearcache|default",
 					 )
 optparser.add_option("-b",
 					 action = "store",
@@ -49,7 +49,7 @@ optparser.add_option("-p",
 					 dest = "evictionpolicy",
 					 help = "eviction-policy",
 					 choices = [ "NONE" , "LRU" , "LFU" ],
-					 metavar = "INT",
+					 metavar = "NONE|LRU|LFU",
 					 )
 
 optparser.add_option("-s",
@@ -118,8 +118,37 @@ else:
 	invalidateonchange.text = "true"
 
 	if options.mode == "backup":
-		pass
+		if options.backupcount and options.readbackupdata:
+			backupcount.text = str( options.backupcount )
+			readbackupdata.text = options.readbackupdata
+		else:
+			print "You should provide backup-count and read-backup-data"
 	elif options.mode == "eviction":
-		pass
+		if options.backupcount and options.timetoliveseconds and options.maxidleseconds and \
+		   		options.evictionpolicy and options.maxsize and options.evictionpercentage and \
+		   		options.evictiondelayseconds:
+			backupcount.text = str( options.backupcount )
+			timetoliveseconds.text = str( options.timetoliveseconds )
+			maxidleseconds.text = str( options.maxidleseconds ) 
+			evictionpolicy.text = options.evictionpolicy
+			maxsize.text = str( options.maxsize )
+			evictionpercentage.text = str( options.evictionpercentage )
+			evictiondelayseconds.text = str( options.evictiondelayseconds )
+		else:
+			print "You should provide backup-count, time-to-live-seconds, max-idle-seconds, " +\
+				 					 "eviction-policy, max-size, eviction-percentage and " +\
+				   					 "eviction-delay-seconds"
+
 	elif options.mode == "nearcache":
-		pass
+		if options.timetoliveseconds and options.maxidleseconds and options.evictionpolicy and \
+				options.maxsize and options.invalidateonchange:
+			timetoliveseconds.text = str( options.timetoliveseconds )
+			maxidleseconds.text = str( options.maxidleseconds ) 
+			evictionpolicy.text = options.evictionpolicy
+			maxsize.text = str( options.maxsize )
+			invalidateonchange.text = options.invalidateonchange
+		else:
+			print "You should provide time-to-live-seconds, max-idle-seconds, eviction-policy, " +\
+				 					 "max-size and invalidateonchange"
+
+	tree.write('main/resources/hazelcast.xml')
