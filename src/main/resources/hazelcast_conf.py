@@ -89,7 +89,7 @@ optparser.add_option("-o",
 (options, args) = optparser.parse_args()
 
 xmlparser = etree.XMLParser(remove_comments=False,encoding="UTF-8")
-tree = etree.parse('main/resources/hazelcast.xml', parser=xmlparser)
+tree = etree.parse('src/main/resources/hazelcast.xml', parser=xmlparser)
 root  = tree.getroot()
 mapnode = root.find("{http://www.hazelcast.com/schema/config}map")
 
@@ -151,4 +151,4 @@ else:
 			print "You should provide time-to-live-seconds, max-idle-seconds, eviction-policy, " +\
 				 					 "max-size and invalidateonchange"
 
-	tree.write('main/resources/hazelcast.xml')
+	tree.write('src/main/resources/hazelcast.xml')
