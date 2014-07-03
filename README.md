@@ -10,7 +10,7 @@ You should have installed Apache Maven(http://maven.apache.org/download.cgi) and
 ```
 mysql -u USERNAME -pPASSWORD -e 'create database hibernate;'
 ```
-2) create table name "EMPLOYEE" using:
+2) create table named "EMPLOYEE" using:
 ```
 mysql -u USERNAME -pPASSWORD -D hibernate -e 'create table EMPLOYEE ( id INT NOT NULL auto_increment, first_name VARCHAR(20) default NULL, last_name  VARCHAR(20) default NULL, salary INT default NULL, PRIMARY KEY (id) );'
 ```
@@ -19,9 +19,16 @@ mysql -u USERNAME -pPASSWORD -D hibernate -e 'create table EMPLOYEE ( id INT NOT
 git clone https://github.com/hazelcastInternsSummer14/hibernate4.git
 ```
 4) go to hibernate4 folder
-
-5) run the code: 
+5) change hibernate.connection.username and hibernate.connection.password fields according to your mysql configurations
+5) run: 
 ```
 mvn compile
 ```
- 
+6) Create a hazelcast instance by running:
+```
+mvn exec:java -Dexec.mainClass="Hz"
+```
+7) run:
+```
+mvn exec:java -Dexec.mainClass="ManageEmployee"
+```
