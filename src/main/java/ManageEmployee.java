@@ -1,14 +1,6 @@
 import java.util.List;
-import java.util.Date;
 import java.util.Iterator;
-import java.lang.Thread;
 import java.util.Scanner;
-
-import com.hazelcast.config.Config;
-import com.hazelcast.config.GroupConfig;
-import com.hazelcast.core.Hazelcast;
-import com.hazelcast.core.HazelcastInstance;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
@@ -20,6 +12,11 @@ import org.hibernate.cfg.Configuration;
 
 public class ManageEmployee {
     private static SessionFactory factory;
+    private static Session session;
+    private static Transaction tx;
+    private static Scanner reader;
+    private static String command;
+
     public static void main(String[] args) {
         try{
             factory = new Configuration().configure().buildSessionFactory();
@@ -27,98 +24,64 @@ public class ManageEmployee {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
-        ManageEmployee ME = new ManageEmployee();
 
-      /* Add few employee records in database */
-        Integer empID1 = ME.addEmployee("Zara", "Ali", 1000);
-        Integer empID2 = ME.addEmployee("Daisy", "Das", 5000);
-        Integer empID3 = ME.addEmployee("John", "Paul", 10000);
+        reader = new Scanner(System.in);
+        session = factory.openSession();
+        tx = session.beginTransaction();
 
-      /* List down all the employees */
-        ME.listEmployees();
-
-      /* Update employee's records */
-        ME.updateEmployee(empID1, 5000);
-
-      /* Delete an employee from the database */
-        ME.deleteEmployee(empID2);
-
-      /* List down new list of the employees */
-        ME.listEmployees();
-    }
-    /* Method to CREATE an employee in the database */
-    public Integer addEmployee(String fname, String lname, int salary){
-        Session session = factory.openSession();
-        Transaction tx = null;
-        Integer employeeID = null;
-        try{
-            tx = session.beginTransaction();
-            Employee employee = new Employee(fname, lname, salary);
-            employeeID = (Integer) session.save(employee);
-            tx.commit();
-        }catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        }finally {
-            session.close();
-        }
-        return employeeID;
-    }
-    /* Method to  READ all the employees */
-    public void listEmployees( ){
-        Session session = factory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            List employees = session.createQuery("FROM Employee").list();
-            for (Iterator iterator =
-                         employees.iterator(); iterator.hasNext();){
-                Employee employee = (Employee) iterator.next();
-                System.out.print("First Name: " + employee.getFirstName());
-                System.out.print("  Last Name: " + employee.getLastName());
-                System.out.println("  Salary: " + employee.getSalary());
+        for(;;){
+            System.out.print("command:");
+            command = reader.nextLine();
+            if( command.equals("list") ){
+                List employees = session.createQuery("FROM Employee").list();
+                for (Iterator iterator =
+                             employees.iterator(); iterator.hasNext();){
+                    Employee employee = (Employee) iterator.next();
+                    System.out.print("First Name: " + employee.getFirstName());
+                    System.out.print("  Last Name: " + employee.getLastName());
+                    System.out.println("  Salary: " + employee.getSalary());
+                }
             }
-            tx.commit();
-        }catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        }finally {
-            session.close();
+            else if( command.equals("add") ){
+                System.out.print("First Name:");
+                String fname = reader.nextLine();
+                System.out.print("Last Name:");
+                String lname = reader.nextLine();
+                System.out.print("Salary:");
+                int salary = reader.nextInt();
+                Employee employee = new Employee(fname, lname, salary);
+                int employeeID = (Integer) session.save(employee);
+                System.out.println("EmployeeID:"+employeeID);
+            }
+            else if( command.equals("delete") ){
+                System.out.print("EmployeeID:");
+                int employeeId = reader.nextInt();
+                Employee employee = (Employee)session.get(Employee.class, employeeId);
+                session.delete(employee);
+            }
+            else if( command.equals("close") ){
+                tx.commit();
+                session.close();
+            }
+            else if( command.equals("open") ){
+                session = factory.openSession();
+                tx = session.beginTransaction();
+            }
+            else if( command.equals("help") ){
+                System.out.println("help         this menu");
+                System.out.println("list         list all employees");
+                System.out.println("add          add an employee");
+                System.out.println("delete       delete and employee");
+                System.out.println("open         open session and begin transaction");
+                System.out.println("close        commit transaction and close session");
+
+            }
+            else{
+                System.out.println(command+": command not found. Use help menu");
+            }
         }
+
+
     }
-    /* Method to UPDATE salary for an employee */
-    public void updateEmployee(Integer EmployeeID, int salary ){
-        Session session = factory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            Employee employee =
-                    (Employee)session.get(Employee.class, EmployeeID);
-            employee.setSalary( salary );
-            session.update(employee);
-            tx.commit();
-        }catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        }finally {
-            session.close();
-        }
-    }
-    /* Method to DELETE an employee from the records */
-    public void deleteEmployee(Integer EmployeeID){
-        Session session = factory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            Employee employee =
-                    (Employee)session.get(Employee.class, EmployeeID);
-            session.delete(employee);
-            tx.commit();
-        }catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        }finally {
-            session.close();
-        }
-    }
+
 }
