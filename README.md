@@ -6,13 +6,22 @@ You should have installed Apache Maven(http://maven.apache.org/download.cgi) and
 
 <h2>How to Run Sample Application</h2>
 
-1) clone the repository to your local using the following command:
+1) create database named "hibernate" using:
+```
+mysql -u USERNAME -pPASSWORD -e 'create database hibernate;'
+```
+2) create table name "EMPLOYEE" using:
+```
+mysql -u USERNAME -pPASSWORD -D hibernate -e 'create table EMPLOYEE ( id INT NOT NULL auto_increment, first_name VARCHAR(20) default NULL, last_name  VARCHAR(20) default NULL, salary INT default NULL, PRIMARY KEY (id) );'
+```
+3) clone the repository to your local using:
 ```
 git clone https://github.com/hazelcastInternsSummer14/hibernate4.git
 ```
-2) go to hibernate4 folder
+4) go to hibernate4 folder
 
-3) run the code: 
+5) run the code: 
 ```
 mvn compile
 ```
+ 
