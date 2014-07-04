@@ -4,6 +4,8 @@ This project is prepared to serve as a sample application for Hazelcast, the lea
 <h2>Prerequisites</h2>
 You should have installed Apache Maven(http://maven.apache.org/download.cgi) and MySQL Server(http://dev.mysql.com/downloads/mysql/) on your system.
 
+It would be great if you also have installed Python 2x(https://www.python.org/downloads/) on your system.
+
 <h2>How to Run Sample Application</h2>
 
 1) create database named "hibernate" using:
@@ -19,16 +21,21 @@ mysql -u USERNAME -pPASSWORD -D hibernate -e 'create table EMPLOYEE ( id INT NOT
 git clone https://github.com/hazelcastInternsSummer14/hibernate4.git
 ```
 4) go to hibernate4 folder
-5) change hibernate.connection.username and hibernate.connection.password fields according to your mysql configurations
-5) run: 
+
+5) change "hibernate.connection.username" and "hibernate.connection.password" fields in "src/main/resources/hibernate.cfg.xml" file according to your mysql configurations
+
+6) run: 
 ```
 mvn compile
 ```
-6) Create a hazelcast instance by running:
+7) Create a hazelcast instance by running:
 ```
 mvn exec:java -Dexec.mainClass="Hz"
 ```
-7) run:
+8) After running following, you can add or delete employees as you please:
 ```
 mvn exec:java -Dexec.mainClass="ManageEmployee"
 ```
+9) add some employees but do not commit. After creating second hazelcast instance, shutdown first instance. Even now you should be able to commit you changes to database.
+
+10) You can also edit "src/main/resources/hazelcast.xml" file using "src/main/resources/hazelcast_conf.py" script.

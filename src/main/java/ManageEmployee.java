@@ -30,7 +30,7 @@ public class ManageEmployee {
         tx = session.beginTransaction();
 
         for(;;){
-            System.out.print("command:");
+            System.out.print("command: ");
             command = reader.nextLine();
             if( command.equals("list") ){
                 List employees = session.createQuery("FROM Employee").list();
@@ -43,18 +43,18 @@ public class ManageEmployee {
                 }
             }
             else if( command.equals("add") ){
-                System.out.print("First Name:");
+                System.out.print("First Name: ");
                 String fname = reader.nextLine();
-                System.out.print("Last Name:");
+                System.out.print("Last Name: ");
                 String lname = reader.nextLine();
-                System.out.print("Salary:");
+                System.out.print("Salary: ");
                 int salary = reader.nextInt();
                 Employee employee = new Employee(fname, lname, salary);
                 int employeeID = (Integer) session.save(employee);
-                System.out.println("EmployeeID:"+employeeID);
+                System.out.println("EmployeeID: "+employeeID);
             }
             else if( command.equals("delete") ){
-                System.out.print("EmployeeID:");
+                System.out.print("EmployeeID: ");
                 int employeeId = reader.nextInt();
                 Employee employee = (Employee)session.get(Employee.class, employeeId);
                 session.delete(employee);
