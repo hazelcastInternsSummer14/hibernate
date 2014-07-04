@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Hibernate4 by hazelcastInternsSummer14</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Hibernate4</h1>
+        <p class="header">Hibernate4 with Hazelcast as Second Level Cache</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/hazelcastInternsSummer14/hibernate4/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/hazelcastInternsSummer14/hibernate4/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/hazelcastInternsSummer14/hibernate4">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/hazelcastInternsSummer14">hazelcastInternsSummer14</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>ABOUT</h1>
+
+<p>This project is prepared to serve as a sample application for Hazelcast, the leading open source in-memory data grid . Here, Hazelcast's use case is Hibernate.</p>
+
+<h2>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<p>You should have installed Apache Maven(<a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a>) and MySQL Server(<a href="http://dev.mysql.com/downloads/mysql/">http://dev.mysql.com/downloads/mysql/</a>) on your system.</p>
+
+<p>It would be great if you also have installed Python 2x(<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>) on your system.</p>
+
+<h2>
+<a name="how-to-run-sample-application" class="anchor" href="#how-to-run-sample-application"><span class="octicon octicon-link"></span></a>How to Run Sample Application</h2>
+
+<p>1) create database named "hibernate" using the following command after replacing USERNAME and PASSWORD with yours:</p>
+
+<pre><code>mysql -u USERNAME -pPASSWORD -e 'create database hibernate;'
+</code></pre>
+
+<p>2) create table named "EMPLOYEE" using the following command after replacing USERNAME and PASSWORD with yours:</p>
+
+<pre><code>mysql -u USERNAME -pPASSWORD -D hibernate -e 'create table EMPLOYEE ( id INT NOT NULL auto_increment, first_name VARCHAR(20) default NULL, last_name  VARCHAR(20) default NULL, salary INT default NULL, PRIMARY KEY (id) );'
+</code></pre>
+
+<p>3) clone the repository to your local using:</p>
+
+<pre><code>git clone https://github.com/hazelcastInternsSummer14/hibernate4.git
+</code></pre>
+
+<p>4) go to "hibernate4" folder</p>
+
+<p>5) change "hibernate.connection.username" and "hibernate.connection.password" fields in "src/main/resources/hibernate.cfg.xml" file according to your mysql configurations</p>
+
+<p>6) run: </p>
+
+<pre><code>mvn compile
+</code></pre>
+
+<p>7) Create a hazelcast instance by running:</p>
+
+<pre><code>mvn exec:java -Dexec.mainClass="Hz"
+</code></pre>
+
+<p>8) After running the following code in different terminal, you can add or delete employees. Start with writing help in the application:</p>
+
+<pre><code>mvn exec:java -Dexec.mainClass="ManageEmployee"
+</code></pre>
+
+<p>9) add some employees but do not commit. After creating second hazelcast instance, shutdown first instance. Even now you should be able to commit you changes to database. You can see the employees in the database using:</p>
+
+<pre><code>mysql -u USERNAME -pPASSWORD -D hibernate -e 'select * from EMPLOYEE;'
+</code></pre>
+
+<p>10) You can also edit "src/main/resources/hazelcast.xml" file using "src/main/resources/hazelcast_conf.py" script.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
