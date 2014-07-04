@@ -40,10 +40,10 @@
  			jdbc:mysql://localhost/hibernate
  		</property>
  		<property name="hibernate.connection.username">
- 			root
+ 			USERNAME
  		</property>
  		<property name="hibernate.connection.password">
- 			lik
+ 			PASSWORD
  		</property>
  		<mapping resource="Employee.hbm.xml"/>
 	</session-factory>

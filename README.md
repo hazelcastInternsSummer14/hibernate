@@ -8,11 +8,11 @@ It would be great if you also have installed Python 2x(https://www.python.org/do
 
 <h2>How to Run Sample Application</h2>
 
-1) create database named "hibernate" using:
+1) create database named "hibernate" using the following command after replacing USERNAME and PASSWORD with yours:
 ```
 mysql -u USERNAME -pPASSWORD -e 'create database hibernate;'
 ```
-2) create table named "EMPLOYEE" using:
+2) create table named "EMPLOYEE" using the following command after replacing USERNAME and PASSWORD with yours:
 ```
 mysql -u USERNAME -pPASSWORD -D hibernate -e 'create table EMPLOYEE ( id INT NOT NULL auto_increment, first_name VARCHAR(20) default NULL, last_name  VARCHAR(20) default NULL, salary INT default NULL, PRIMARY KEY (id) );'
 ```
@@ -20,7 +20,7 @@ mysql -u USERNAME -pPASSWORD -D hibernate -e 'create table EMPLOYEE ( id INT NOT
 ```
 git clone https://github.com/hazelcastInternsSummer14/hibernate4.git
 ```
-4) go to hibernate4 folder
+4) go to "hibernate4" folder
 
 5) change "hibernate.connection.username" and "hibernate.connection.password" fields in "src/main/resources/hibernate.cfg.xml" file according to your mysql configurations
 
@@ -32,7 +32,7 @@ mvn compile
 ```
 mvn exec:java -Dexec.mainClass="Hz"
 ```
-8) After running the following code, you can add or delete employees as you please:
+8) After running the following code in different terminal, you can add or delete employees. Start with writing help in the application:
 ```
 mvn exec:java -Dexec.mainClass="ManageEmployee"
 ```
