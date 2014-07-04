@@ -49,6 +49,7 @@ public class ManageEmployee {
                 String lname = reader.nextLine();
                 System.out.print("Salary: ");
                 int salary = reader.nextInt();
+                reader.nextLine();
                 Employee employee = new Employee(fname, lname, salary);
                 int employeeID = (Integer) session.save(employee);
                 System.out.println("EmployeeID: "+employeeID);
@@ -56,6 +57,7 @@ public class ManageEmployee {
             else if( command.equals("delete") ){
                 System.out.print("EmployeeID: ");
                 int employeeId = reader.nextInt();
+                reader.nextLine();
                 Employee employee = (Employee)session.get(Employee.class, employeeId);
                 session.delete(employee);
             }
@@ -76,8 +78,14 @@ public class ManageEmployee {
                 System.out.println("close        commit transaction and close session");
 
             }
+            else if( command.equals("quit") ) {
+                tx.commit();
+                session.close();
+                factory.close();
+                break;
+            }
             else{
-                System.out.println(command+": command not found. Use help menu");
+                System.out.println("command not found. Use help menu");
             }
         }
 

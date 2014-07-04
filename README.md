@@ -32,10 +32,12 @@ mvn compile
 ```
 mvn exec:java -Dexec.mainClass="Hz"
 ```
-8) After running following, you can add or delete employees as you please:
+8) After running the following code, you can add or delete employees as you please:
 ```
 mvn exec:java -Dexec.mainClass="ManageEmployee"
 ```
-9) add some employees but do not commit. After creating second hazelcast instance, shutdown first instance. Even now you should be able to commit you changes to database.
-
+9) add some employees but do not commit. After creating second hazelcast instance, shutdown first instance. Even now you should be able to commit you changes to database. You can see the employees in the database using:
+```
+mysql -u USERNAME -pPASSWORD -D hibernate -e 'select * from EMPLOYEE;'
+```
 10) You can also edit "src/main/resources/hazelcast.xml" file using "src/main/resources/hazelcast_conf.py" script.
