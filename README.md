@@ -4,8 +4,6 @@ In this repository, you can find an example implementation of hibernate 2nd leve
 <h2>Prerequisites</h2>
 You should have installed Apache Maven(http://maven.apache.org/download.cgi).
 
-It would be great if you also have installed Python 2x(https://www.python.org/downloads/) on your system.
-
 <h2>How to Run Sample Application</h2>
 
 1) clone the repository to your local using:
