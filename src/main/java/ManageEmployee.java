@@ -43,6 +43,9 @@ public class ManageEmployee {
                 }
             }
             else if( command.equals("add") ){
+                System.out.print("Id: ");
+                int id = reader.nextInt();
+                reader.nextLine();
                 System.out.print("First Name: ");
                 String fname = reader.nextLine();
                 System.out.print("Last Name: ");
@@ -50,7 +53,7 @@ public class ManageEmployee {
                 System.out.print("Salary: ");
                 int salary = reader.nextInt();
                 reader.nextLine();
-                Employee employee = new Employee(fname, lname, salary);
+                Employee employee = new Employee(id,fname, lname, salary);
                 int employeeID = (Integer) session.save(employee);
                 System.out.println("EmployeeID: "+employeeID);
             }

@@ -25,7 +25,7 @@
 			false
 		</property>
     	<property name="hibernate.cache.hazelcast.use_native_client">
-    		true
+    		false
 		</property>
     	<property name="hibernate.cache.hazelcast.native_client_hosts">
     		127.0.0.1
@@ -36,14 +36,11 @@
     	<property name="hibernate.cache.hazelcast.native_client_password">
     		password
     	</property>
+    	<property name="hibernate.connection.driver_class">
+            org.apache.derby.jdbc.EmbeddedDriver
+         </property>
 		<property name="hibernate.connection.url">
- 			jdbc:mysql://localhost/hibernate
- 		</property>
- 		<property name="hibernate.connection.username">
- 			USERNAME
- 		</property>
- 		<property name="hibernate.connection.password">
- 			PASSWORD
+ 			jdbc:derby:hibernateDB
  		</property>
  		<mapping resource="Employee.hbm.xml"/>
 	</session-factory>
