@@ -1,5 +1,5 @@
 <h1>Hibernate 2nd Level Cache with Hazelcast</h1>
-In this repository, you can find an example implementation of hibernate 2nd level cache with hazelcast. You can also find detailed explanation at http://hazelcast.com/use-cases/hibernate-2nd-level/ 
+In this repository, you can find a sample implementation of hibernate 2nd level cache with hazelcast. You can also find detailed explanation at http://hazelcast.com/use-cases/hibernate-2nd-level/ 
 
 <h2>Prerequisites</h2>
 You should have installed Apache Maven(http://maven.apache.org/download.cgi).
