@@ -37,7 +37,8 @@ public class ManageEmployee {
                 for (Iterator iterator =
                              employees.iterator(); iterator.hasNext();){
                     Employee employee = (Employee) iterator.next();
-                    System.out.print("First Name: " + employee.getFirstName());
+                    System.out.print("Id: " + employee.getId());
+                    System.out.print("  First Name: " + employee.getFirstName());
                     System.out.print("  Last Name: " + employee.getLastName());
                     System.out.println("  Salary: " + employee.getSalary());
                 }
