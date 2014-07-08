@@ -11,7 +11,7 @@ It would be great if you also have installed Python 2x(https://www.python.org/do
 1) clone the repository to your local using:
 ```
 git clone https://github.com/hazelcastInternsSummer14/hibernate4.git
-
+```
 2) go to "hibernate4" folder
 
 3) Compile project using:
