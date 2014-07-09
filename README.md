@@ -18,9 +18,9 @@ mvn compile
 ```
 4) Create database using:
 ```
-mvn exec:java -Dexec.mainClass="CreateDB"
+mvn exec:java -Dexec.mainClass="com.hazelcast.hibernate4.CreateDB"
 ```
 5) After running the following code, you can add or delete employees. Start with writing help in the application:
 ```
-mvn exec:java -Dexec.mainClass="ManageEmployee"
+mvn exec:java -Dexec.mainClass="com.hazelcast.hibernate4.ManageEmployee"
 ```
