@@ -1,4 +1,4 @@
-package com.hazelcast.hibernate4;
+package com.hazelcast.hibernate;
 
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;

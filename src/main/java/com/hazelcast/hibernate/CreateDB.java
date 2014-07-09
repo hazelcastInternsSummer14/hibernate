@@ -1,4 +1,4 @@
-package com.hazelcast.hibernate4;
+package com.hazelcast.hibernate;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

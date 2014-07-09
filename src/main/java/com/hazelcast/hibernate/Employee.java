@@ -1,4 +1,4 @@
-package com.hazelcast.hibernate4;
+package com.hazelcast.hibernate;
 
 /**
  * Created by Esref Ozturk <esrefozturk93@gmail.com> on 26.06.2014.

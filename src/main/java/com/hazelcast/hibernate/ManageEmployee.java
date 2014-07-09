@@ -1,4 +1,4 @@
-package com.hazelcast.hibernate4;
+package com.hazelcast.hibernate;
 
 import java.util.List;
 import java.util.Iterator;
