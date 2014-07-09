@@ -6,6 +6,23 @@ You should have installed Apache Maven(http://maven.apache.org/download.cgi).
 
 It would be great if you have also installed Python 2x(https://www.python.org/downloads/) on your system.
 
+By default "hibernate-core" and "hazelcast-hibernate4" added to project as follows in "pom.xml" file
+```
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>4.3.5.Final</version>
+</dependency>
+
+
+<dependency>
+    <groupId>com.hazelcast</groupId>
+    <artifactId>hazelcast-hibernate4</artifactId>
+    <version>3.2.3</version>
+</dependency>
+```
+But project is also compatible with hibernate 3.X.X versions. You can change these entries accordingly.
+
 <h2>How to Run Sample Application</h2>
 1) clone the repository to your local using:
 ```
@@ -41,5 +58,4 @@ Salary: 100
 Id: 1 First Name: Ali Last Name: Veli Salary: 100
 ```
 <h2>Extras</h2>
-- Although hibernate4 is used here, this project is also compatible with hibernate3.
 - You can configure "src/main/resources/hibernate.cfg.xml" file using "src/main/resources/conf.py" script.
