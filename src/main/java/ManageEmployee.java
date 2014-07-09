@@ -99,11 +99,17 @@ public class ManageEmployee {
                 System.out.println("open         open session and begin transaction");
                 System.out.println("close        commit transaction and close session");
                 System.out.println("change       change between two sessions");
-
+                System.out.println("exit         exit");
             }
-            else if( command.equals("quit") ) {
-                currentTx.commit();
-                currentSession.close();
+            else if( command.equals("exit") ) {
+                if( !tx1.getLocalStatus().toString().equals("COMMITTED")){
+                    tx1.commit();
+                    session1.close();
+                }
+                if( !tx2.getLocalStatus().toString().equals("COMMITTED")){
+                    tx2.commit();
+                    session2.close();
+                }
                 factory.close();
                 break;
             }
