@@ -40,5 +40,6 @@ Salary: 100
 [1. session]command: list
 Id: 1 First Name: Ali Last Name: Veli Salary: 100
 ```
-<h2>Extra</h2>
-You can configure "src/main/resources/hibernate.cfg.xml" file using "src/main/resources/conf.py" script.
+<h2>Extras</h2>
+- Although hibernate4 is used here, this project is also compatible with hibernate3.
+- You can configure "src/main/resources/hibernate.cfg.xml" file using "src/main/resources/conf.py" script.
