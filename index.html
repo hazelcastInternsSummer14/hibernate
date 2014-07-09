@@ -20,9 +20,9 @@
         <p class="header">Hibernate 2nd Level Cache with Hazelcast</p>
 
         <ul>
-          <li class="download"><a class="buttons" href="https://github.com/hazelcastInternsSummer14/hibernate4/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/hazelcastInternsSummer14/hibernate4/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/hazelcastInternsSummer14/hibernate4">View On GitHub</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/hazelcastInternsSummer14/hibernate/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/hazelcastInternsSummer14/hibernate/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/hazelcastInternsSummer14/hibernate">View On GitHub</a></li>
         </ul>
 
         <p class="header">This project is maintained by <a class="header name" href="https://github.com/hazelcastInternsSummer14">hazelcastInternsSummer14</a></p>
@@ -33,22 +33,42 @@
         <h1>
 <a name="hibernate-2nd-level-cache-with-hazelcast" class="anchor" href="#hibernate-2nd-level-cache-with-hazelcast"><span class="octicon octicon-link"></span></a>Hibernate 2nd Level Cache with Hazelcast</h1>
 
-<p>In this repository, you can find a sample implementation of hibernate 2nd level cache with hazelcast. You can also find detailed explanation at <a href="http://hazelcast.com/use-cases/hibernate-2nd-level/">http://hazelcast.com/use-cases/hibernate-2nd-level/</a> </p>
+<p>In this repository, you can find a sample implementation of hibernate 2nd level cache with hazelcast. You can also find detailed explanation at <a href="http://hazelcast.org/">http://hazelcast.org/</a> </p>
 
 <h2>
 <a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
 
 <p>You should have installed Apache Maven(<a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a>).</p>
 
+<p>It would be great if you have also installed Python 2x(<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>) on your system.</p>
+
+<p>By default "hibernate-core" and "hazelcast-hibernate4" added to project as follows in "pom.xml" file</p>
+
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+    &lt;version&gt;4.3.5.Final&lt;/version&gt;
+&lt;/dependency&gt;
+
+
+&lt;dependency&gt;
+    &lt;groupId&gt;com.hazelcast&lt;/groupId&gt;
+    &lt;artifactId&gt;hazelcast-hibernate4&lt;/artifactId&gt;
+    &lt;version&gt;3.2.3&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>But project is also compatible with hibernate 3.X.X versions. You can change these entries accordingly.</p>
+
 <h2>
 <a name="how-to-run-sample-application" class="anchor" href="#how-to-run-sample-application"><span class="octicon octicon-link"></span></a>How to Run Sample Application</h2>
 
 <p>1) clone the repository to your local using:</p>
 
-<pre><code>git clone https://github.com/hazelcastInternsSummer14/hibernate4.git
+<pre><code>git clone https://github.com/hazelcastInternsSummer14/hibernate.git
 </code></pre>
 
-<p>2) go to "hibernate4" folder</p>
+<p>2) go to "hibernate" folder</p>
 
 <p>3) Compile project using:</p>
 
@@ -57,13 +77,38 @@
 
 <p>4) Create database using:</p>
 
-<pre><code>mvn exec:java -Dexec.mainClass="com.hazelcast.hibernate4.CreateDB"
+<pre><code>mvn exec:java -Dexec.mainClass="com.hazelcast.hibernate.CreateDB"
 </code></pre>
 
 <p>5) After running the following code, you can add or delete employees. Start with writing help in the application:</p>
 
-<pre><code>mvn exec:java -Dexec.mainClass="com.hazelcast.hibernate4.ManageEmployee"
+<pre><code>mvn exec:java -Dexec.mainClass="com.hazelcast.hibernate.ManageEmployee"
 </code></pre>
+
+<h3>
+<a name="sample-use-case" class="anchor" href="#sample-use-case"><span class="octicon octicon-link"></span></a>Sample Use Case</h3>
+
+<p>Execute the following commands in ManageEmployee. You will see that an employee will be created at the second session but you can see it in the first session too.</p>
+
+<pre><code>[1. session]command: list
+[1. session]command: change
+[2. session]command: add
+Id: 1
+First Name: Ali
+Last Name: Veli
+Salary: 100
+[2. session]command: close
+[2. session]command: change
+[1. session]command: list
+Id: 1 First Name: Ali Last Name: Veli Salary: 100
+</code></pre>
+
+<h2>
+<a name="extras" class="anchor" href="#extras"><span class="octicon octicon-link"></span></a>Extras</h2>
+
+<ul>
+<li>You can configure "src/main/resources/hibernate.cfg.xml" file using "src/main/resources/conf.py" script.</li>
+</ul>
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
