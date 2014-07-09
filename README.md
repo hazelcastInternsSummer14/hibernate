@@ -18,7 +18,7 @@ mvn compile
 ```
 4) Create database using:
 ```
-mvn exec:java -Dexec.mainClass="createDB"
+mvn exec:java -Dexec.mainClass="CreateDB"
 ```
 5) After running the following code, you can add or delete employees. Start with writing help in the application:
 ```
