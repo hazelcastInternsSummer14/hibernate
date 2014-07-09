@@ -41,4 +41,4 @@ Salary: 100
 Id: 1 First Name: Ali Last Name: Veli Salary: 100
 ```
 <h2>Extra</h2>
-You can configure "src/main/resources/hibernate.cfg.xml" file using "src/main/resources/conf.py" script. A sample usage is as follows:
+You can configure "src/main/resources/hibernate.cfg.xml" file using "src/main/resources/conf.py" script.
