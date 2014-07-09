@@ -1,3 +1,5 @@
+package com.hazelcast.hibernate4;
+
 import java.util.List;
 import java.util.Iterator;
 import java.util.Scanner;
