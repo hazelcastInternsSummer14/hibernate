@@ -24,3 +24,17 @@ mvn exec:java -Dexec.mainClass="com.hazelcast.hibernate4.CreateDB"
 ```
 mvn exec:java -Dexec.mainClass="com.hazelcast.hibernate4.ManageEmployee"
 ```
+<h3>Sample Use Case</h3>
+Execute the following commands in ManageEmployee. You will see that an employee will be created at the second session but you can see it in the first session too.
+```
+list
+change
+add
+1
+Ali
+Veli
+100
+close
+change
+list
+```
