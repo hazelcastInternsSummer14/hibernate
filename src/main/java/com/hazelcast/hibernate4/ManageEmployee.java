@@ -104,11 +104,11 @@ public class ManageEmployee {
                 System.out.println("exit         exit");
             }
             else if( command.equals("exit") ) {
-                if( !tx1.getLocalStatus().toString().equals("COMMITTED")){
+                if( !tx1.wasCommitted()){
                     tx1.commit();
                     session1.close();
                 }
-                if( !tx2.getLocalStatus().toString().equals("COMMITTED")){
+                if( !tx2.wasCommitted()){
                     tx2.commit();
                     session2.close();
                 }
